@@ -1,0 +1,72 @@
+﻿@model IEnumerable<AssetManagerWebAPI.Models.DBAsset>
+
+@{
+    ViewBag.Title = "Missed Checkin";
+}
+
+<h2>Missed Checkin</h2>
+
+<p>Total: @Model.Count()</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastCheckin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Managed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Storage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SerialNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastCheckin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Managed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Storage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.SerialNumber }) |
+            @Html.ActionLink("Details", "Details", new { id = item.SerialNumber }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.SerialNumber })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

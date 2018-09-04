@@ -1,0 +1,143 @@
+﻿@model IEnumerable<AssetManagerWebAPI.Models.DBAsset>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DBAsset List</h2>
+
+@using (Html.BeginForm())
+{
+    <p> Name: @Html.TextBox("SearchString") <input type="submit" value="Filter" /></p>
+}
+
+    <p>@Html.ActionLink("Missed Checkin", "MissedCheckin", new { timeSinceCheckin = 7 }) | @Html.ActionLink("Deleted Machines", "DeletedMachines", new {  })</p>
+
+    <p>Total: @Model.Count()</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @if (ViewBag.NameSortParm != "name")
+            {
+                @Html.ActionLink("Name", "Index", new { sortBy = "name", SearchString = ViewBag.SearchParam, sortOrder = ViewBag.SearchOrder })
+            }
+            else if (ViewBag.NameSortParm == "name" && ViewBag.SearchOrder == "asc")
+            {
+                @Html.ActionLink("Name", "Index", new { sortBy = "name", SearchString = ViewBag.SearchParam, sortOrder = "desc" })
+            }
+            else
+            {
+                @Html.ActionLink("Name", "Index", new { sortBy = "name", SearchString = ViewBag.SearchParam, sortOrder = "asc" })
+            }
+        </th>
+        <th>
+            @if (ViewBag.NameSortParm != "serialNumber")
+            {
+                @Html.ActionLink("Serial #", "Index", new { sortBy = "serialNumber", SearchString = ViewBag.SearchParam, sortOrder = ViewBag.SearchOrder })
+            }
+            else if (ViewBag.NameSortParm == "serialNumber" && ViewBag.SearchOrder == "asc")
+            {
+                @Html.ActionLink("Serial #", "Index", new { sortBy = "serialNumber", SearchString = ViewBag.SearchParam, sortOrder = "desc" })
+            }
+            else
+            {
+                @Html.ActionLink("Serial #", "Index", new { sortBy = "serialNumber", SearchString = ViewBag.SearchParam, sortOrder = "asc" })
+            }
+        </th>
+        <th>
+            @if (ViewBag.NameSortParm != "lastCheckin")
+            {
+                @Html.ActionLink("Last Checkin", "Index", new { sortBy = "lastCheckin", SearchString = ViewBag.SearchParam, sortOrder = ViewBag.SearchOrder })
+            }
+            else if (ViewBag.NameSortParm == "lastCheckin" && ViewBag.SearchOrder == "asc")
+            {
+                @Html.ActionLink("Last Checkin", "Index", new { sortBy = "lastCheckin", SearchString = ViewBag.SearchParam, sortOrder = "desc" })
+            }
+            else
+            {
+                @Html.ActionLink("Last Checkin", "Index", new { sortBy = "lastCheckin", SearchString = ViewBag.SearchParam, sortOrder = "asc" })
+            }
+        </th>
+        <th>
+            @if (ViewBag.NameSortParm != "model")
+            {
+                @Html.ActionLink("Model", "Index", new { sortBy = "model", SearchString = ViewBag.SearchParam, sortOrder = ViewBag.SearchOrder })
+            }
+            else if (ViewBag.NameSortParm == "model" && ViewBag.SearchOrder == "asc")
+            {
+                @Html.ActionLink("Model", "Index", new { sortBy = "model", SearchString = ViewBag.SearchParam, sortOrder = "desc" })
+            }
+            else
+            {
+                @Html.ActionLink("Model", "Index", new { sortBy = "model", SearchString = ViewBag.SearchParam, sortOrder = "asc" })
+            }
+        </th>
+        <th>
+            @if (ViewBag.NameSortParm != "storage")
+            {
+                @Html.ActionLink("Storage", "Index", new { sortBy = "storage", SearchString = ViewBag.SearchParam, sortOrder = ViewBag.SearchOrder })
+            }
+            else if (ViewBag.NameSortParm == "storage" && ViewBag.SearchOrder == "asc")
+            {
+                @Html.ActionLink("Storage", "Index", new { sortBy = "storage", SearchString = ViewBag.SearchParam, sortOrder = "desc" })
+            }
+            else
+            {
+                @Html.ActionLink("Storage", "Index", new { sortBy = "storage", SearchString = ViewBag.SearchParam, sortOrder = "asc" })
+            }
+        </th>
+        <th>
+            @if (ViewBag.NameSortParm != "managed")
+            {
+                @Html.ActionLink("Managed", "Index", new { sortBy = "managed", SearchString = ViewBag.SearchParam, sortOrder = ViewBag.SearchOrder })
+            }
+            else if (ViewBag.NameSortParm == "managed" && ViewBag.SearchOrder == "asc")
+            {
+                @Html.ActionLink("Managed", "Index", new { sortBy = "managed", SearchString = ViewBag.SearchParam, sortOrder = "desc" })
+            }
+            else
+            {
+                @Html.ActionLink("Managed", "Index", new { sortBy = "managed", SearchString = ViewBag.SearchParam, sortOrder = "asc" })
+            }
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MACAddress)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastCheckin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Storage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Managed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MACAddress)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.SerialNumber }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SerialNumber }) |
+                @Html.ActionLink("Comments", "Comments", new { id = item.SerialNumber }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SerialNumber })
+            </td>
+        </tr>
+    }
+
+</table>

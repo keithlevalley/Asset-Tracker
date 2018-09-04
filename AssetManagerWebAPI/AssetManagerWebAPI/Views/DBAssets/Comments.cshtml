@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AssetManagerWebAPI.Models.DBComment>
+
+@{
+    ViewBag.Title = "Comments";
+}
+
+<h2>Comments for Serial Number: @ViewBag.AssetID</h2>
+<div class="col-md-9">
+    @using (Html.BeginForm("AddComment", "DBAssets", new { id = ViewBag.AssetID }))
+    {
+        <p>Comment: @Html.TextBox("comment") <input type="submit" value="Add Comment"  /></p>
+    }
+</div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AddedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateAdded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateAdded)
+                </td>
+                <td>
+                    <div style="overflow:auto;">
+                        @Html.DisplayFor(modelItem => item.Comment)
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    @Html.ActionLink("Back to Details", "Details", new { id = ViewBag.AssetID })
